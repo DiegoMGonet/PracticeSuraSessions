@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView_movement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView_user_image"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="19dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/sura_demo_color_orange_light"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView_initials_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="Lu"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="@id/cardView_user_image"
+                    app:layout_constraintStart_toEndOf="@id/cardView_user_image"
+                    app:layout_constraintBottom_toBottomOf="@id/cardView_user_image">
+
+                    <TextView
+                        android:id="@+id/textView_name_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Luis Ramírez"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        tools:text="15 de Febrero 2020" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView_type"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    tools:src="@drawable/sd_ic_in_movement"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@null"
+                    tools:tint="@color/sura_demo_color_green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_amount_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    tools:text="+ $ 3,000.00"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/imageView_type"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

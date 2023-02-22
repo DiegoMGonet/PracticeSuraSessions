@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SuraAppPractice</string>
+    <string name="sura_demo_app_name">Sura Demo</string>
+
+    <!-- Login-->
+    <string name="sura_demo_login_title">Login</string>
+    <string name="sura_demo_login_user">Usuario</string>
+    <string name="sura_demo_login_password">Contraseña</string>
+    <string name="sura_demo_login_enter">Entrar</string>
+    <string name="sura_demo_login_incorrect_format">Formato inválido</string>
+
+    <!-- Dashboard -->
+    <string name="sura_demo_recent_movements">Movimientos recientes</string>
+
+    <!-- Details -->
+    <string name="sura_demo_name">Nombre</string>
+    <string name="sura_demo_message">Mensaje</string>
+    <string name="sura_demo_reference">Referencia</string>
+    <string name="sura_demo_acept">Aceptar</string>
+</resources>
