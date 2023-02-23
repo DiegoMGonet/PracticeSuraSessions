@@ -18,4 +18,10 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="Theme.AppCompat.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/sura_demo_color_blue_light</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/sd_animated_sura_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.SuraAppPractice</item>
+    </style>
 </resources>

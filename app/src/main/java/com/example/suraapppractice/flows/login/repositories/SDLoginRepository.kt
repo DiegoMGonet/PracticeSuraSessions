@@ -12,11 +12,9 @@ class SDLoginRepository(val suraApi: SDSuraApi) {
         onResponse: (isOk: Boolean, message: String, userModel: SDUser) -> Unit
     ) {
         try {
-            val response = suraApi.loginUser(
-                SDRequestLogin(user, password)
-            )
+            val response = suraApi.loginUser()
 
-            onResponse.invoke(response.isSuccessful, response.message(), response.body() ?: SDUser())
+            onResponse.invoke(response.isSuccessful, response.message(), response.body()?.firstOrNull() ?: SDUser())
         } catch (e: IOException) {
             onResponse.invoke(false, e.message.orEmpty(), SDUser())
         }

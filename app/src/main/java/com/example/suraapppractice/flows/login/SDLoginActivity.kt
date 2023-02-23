@@ -17,7 +17,7 @@ import com.example.suraapppractice.general.extensions.showMessage
 class SDLoginActivity: SDBaseActivity() {
     private lateinit var binding: SdLoginActivityBinding
     private lateinit var errorFormat: String
-    private val viewModel: SDLoginViewModel by viewModels()
+    private val viewModel: SDLoginViewModel by viewModels { SDLoginViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

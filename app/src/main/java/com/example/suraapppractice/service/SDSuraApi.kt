@@ -4,10 +4,15 @@ import com.example.suraapppractice.flows.login.models.SDRequestLogin
 import com.example.suraapppractice.flows.login.models.SDUser
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface SDSuraApi {
 
+    /*
     @POST("users")
-    suspend fun loginUser(@Body userInfo: SDRequestLogin): Response<SDUser>
+    suspend fun loginUser(@Body userInfo: SDRequestLogin): Response<SDUser>*/
+
+    @GET("users")
+    suspend fun loginUser(): Response<List<SDUser>>
 }

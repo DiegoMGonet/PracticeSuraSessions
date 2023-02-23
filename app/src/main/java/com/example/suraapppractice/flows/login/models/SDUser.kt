@@ -5,4 +5,7 @@ data class SDUser(
     val name: String = "",
     val urlImage: String = "",
     val balance: Double = 0.0
-)
+) {
+    override fun toString() =
+        listOf(idUser, name, urlImage, balance).joinToString("|")
+}
