@@ -1,5 +1,6 @@
 package com.example.suraapppractice.service
 
+import com.example.suraapppractice.flows.dashboard.models.SDMovement
 import com.example.suraapppractice.flows.login.models.SDRequestLogin
 import com.example.suraapppractice.flows.login.models.SDUser
 import retrofit2.Response
@@ -15,4 +16,7 @@ interface SDSuraApi {
 
     @GET("users")
     suspend fun loginUser(): Response<List<SDUser>>
+
+    @GET("movements")
+    suspend fun getMovements(): Response<List<SDMovement>>
 }
