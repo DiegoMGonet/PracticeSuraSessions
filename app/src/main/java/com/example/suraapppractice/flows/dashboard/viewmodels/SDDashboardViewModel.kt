@@ -62,6 +62,8 @@ class SDDashboardViewModel(
                 } else {
                     SDDashboardActions.SDErrorService(message)
                 }
+
+                loading.value = false
             }
         }
     }

@@ -3,18 +3,19 @@ package com.example.suraapppractice.flows.dashboard.repositories
 import com.example.suraapppractice.flows.dashboard.models.SDMovement
 import com.example.suraapppractice.service.SDSuraApi
 import kotlinx.coroutines.delay
+import java.io.IOException
 
 class SDMovementsRepository(val suraApi: SDSuraApi) {
     suspend fun getMovements(
         onResponse: (isOk: Boolean, message: String, movements: List<SDMovement>) -> Unit
     ) {
-        /*try {
+        try {
             val response = suraApi.getMovements()
             onResponse.invoke(response.isSuccessful, response.message(), response.body() ?: emptyList())
         } catch(exception: IOException) {
             onResponse.invoke(false, exception.message.orEmpty(), emptyList())
-        }*/
-        delay(3000)
+        }
+        /*delay(3000)
         val dummyList = listOf(
             SDMovement(
                 1,
@@ -36,6 +37,6 @@ class SDMovementsRepository(val suraApi: SDSuraApi) {
             )
         )
 
-        onResponse.invoke(true, "", dummyList)
+        onResponse.invoke(true, "", dummyList)*/
     }
 }

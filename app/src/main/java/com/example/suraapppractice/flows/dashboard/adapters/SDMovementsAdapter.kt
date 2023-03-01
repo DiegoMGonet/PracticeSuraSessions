@@ -2,10 +2,14 @@ package com.example.suraapppractice.flows.dashboard.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.suraapppractice.databinding.SdItemMovementLayoutBinding
 import com.example.suraapppractice.flows.dashboard.models.SDMovement
+import com.example.suraapppractice.general.extensions.getResourcesFromMov
 import com.example.suraapppractice.general.extensions.toCurrency
+import com.example.suraapppractice.general.extensions.toFormatDate
+import com.example.suraapppractice.general.extensions.toMovCurrency
 
 class SDMovementsAdapter(
     private val movements: List<SDMovement>,
@@ -19,12 +23,23 @@ class SDMovementsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (id, contact, date, type, amount, message, reference) = movements[position]
+        val (_, contact, date, type, amount, _, _) = movements[position]
 
         holder.binding.apply {
             textViewNameContact.text = contact
             textViewInitialsName.text = contact.take(2)
-            textViewAmountContact.text = amount.toCurrency()
+            textViewAmountContact.text = amount.toMovCurrency(
+                if (type == "in") '+' else '-'
+            )
+            textViewDate.text = date.toFormatDate()
+
+            val movResources = getResourcesFromMov(type)
+            imageViewType.setImageResource(movResources.first)
+            imageViewType.setColorFilter(
+                ContextCompat.getColor(root.context, movResources.second)
+            )
+
+            cardViewMovement.setOnClickListener { onClickItem.invoke(movements[position]) }
         }
     }
 

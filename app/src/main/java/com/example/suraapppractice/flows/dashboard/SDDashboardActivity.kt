@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.suraapppractice.R
 import com.example.suraapppractice.flows.dashboard.fragments.SDDashboardFragment
+import com.example.suraapppractice.flows.dashboard.fragments.SDFragmentDashboardListener
+import com.example.suraapppractice.flows.dashboard.models.SDMovement
 import com.example.suraapppractice.general.extensions.replaceFragment
 
-class SDDashboardActivity: AppCompatActivity() {
+class SDDashboardActivity: AppCompatActivity(), SDFragmentDashboardListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,4 +18,7 @@ class SDDashboardActivity: AppCompatActivity() {
         replaceFragment(R.id.fragContainer, SDDashboardFragment())
     }
 
+    override fun onItemClicked(item: SDMovement) {
+
+    }
 }
