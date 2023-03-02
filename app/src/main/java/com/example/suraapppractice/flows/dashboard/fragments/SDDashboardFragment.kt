@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.suraapppractice.R
 import com.example.suraapppractice.databinding.SdDashboardFragmentBinding
 import com.example.suraapppractice.flows.dashboard.actions.SDDashboardActions
 import com.example.suraapppractice.flows.dashboard.adapters.SDMovementsAdapter
@@ -17,12 +15,13 @@ import com.example.suraapppractice.flows.dashboard.viewmodels.SDDashboardViewMod
 import com.example.suraapppractice.general.extensions.show
 import com.example.suraapppractice.general.extensions.showMessage
 import com.squareup.picasso.Picasso
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class SDDashboardFragment: Fragment() {
     private var _binding: SdDashboardFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SDDashboardViewModel by viewModels { SDDashboardViewModel.Factory }
+    private val viewModel: SDDashboardViewModel by activityViewModel()
 
     private var listener: SDFragmentDashboardListener? = null
 
@@ -76,7 +75,8 @@ class SDDashboardFragment: Fragment() {
 
     private fun populateMovements(movements: List<SDMovement>) {
         val adapter = SDMovementsAdapter(movements) {
-            listener?.onItemClicked(it)
+            viewModel.movSelected = it
+            listener?.onItemClicked()
         }
         binding.recyclerMovements.adapter = adapter
     }
@@ -88,5 +88,5 @@ class SDDashboardFragment: Fragment() {
 }
 
 interface SDFragmentDashboardListener {
-    fun onItemClicked(item: SDMovement)
+    fun onItemClicked()
 }

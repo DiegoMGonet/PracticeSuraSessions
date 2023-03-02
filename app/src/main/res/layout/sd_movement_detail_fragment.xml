@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.suraapppractice.flows.dashboard.viewmodels.SDDashboardViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,6 +24,7 @@
             android:translationZ="5dp"
             android:background="@drawable/sd_bg_circle_ring"
             tools:text="Ed"
+            android:text="@={viewModel.detailInitialsNameMov}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -45,6 +53,7 @@
                     android:textSize="22sp"
                     android:textStyle="bold"
                     tools:text="$200.00 MXN"
+                    android:text="@={viewModel.detailAmountMov}"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
@@ -80,6 +89,7 @@
                     android:layout_marginTop="4dp"
                     android:textSize="16sp"
                     tools:text="Eduardo Torres"
+                    android:text="@={viewModel.detailUserNameMov}"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/textView_label_name"
                     app:layout_constraintStart_toEndOf="@id/guide_start"/>
@@ -101,6 +111,7 @@
                     android:layout_marginTop="4dp"
                     android:textSize="16sp"
                     tools:text="Es lo que te debo."
+                    android:text="@={viewModel.detailMessageMov}"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/textView_label_message"
                     app:layout_constraintStart_toEndOf="@id/guide_start"
@@ -123,6 +134,7 @@
                     android:layout_marginTop="4dp"
                     android:textSize="16sp"
                     tools:text="8334401029"
+                    android:text="@={viewModel.detailReferenceMov}"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/textView_label_reference"
                     app:layout_constraintStart_toEndOf="@id/guide_start"/>

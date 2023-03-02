@@ -1,5 +1,9 @@
 package com.example.suraapppractice.flows.dashboard.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class SDMovement(
     val id: Int,
     val contact: String,
@@ -8,4 +12,4 @@ data class SDMovement(
     val amount: Double,
     val message: String,
     val reference: String
-)
+): Parcelable

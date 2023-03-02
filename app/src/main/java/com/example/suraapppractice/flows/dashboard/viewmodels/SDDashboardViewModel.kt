@@ -1,43 +1,36 @@
 package com.example.suraapppractice.flows.dashboard.viewmodels
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.*
-import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.suraapppractice.flows.dashboard.actions.SDDashboardActions
+import com.example.suraapppractice.flows.dashboard.models.SDMovement
 import com.example.suraapppractice.flows.dashboard.repositories.SDMovementsRepository
-import com.example.suraapppractice.general.constants.SD_SHARED_PREF
 import com.example.suraapppractice.general.constants.SD_USER_INFO
 import com.example.suraapppractice.general.extensions.orZero
 import com.example.suraapppractice.general.extensions.toCurrency
-import com.example.suraapppractice.service.SDRetrofitSingle
-import com.example.suraapppractice.service.SDSuraApi
+import com.example.suraapppractice.general.extensions.toMovCurrency
 import kotlinx.coroutines.launch
 
 class SDDashboardViewModel(
-    private val shared: SharedPreferences
+    shared: SharedPreferences,
+    private val repository: SDMovementsRepository
 ): ViewModel() {
-    companion object {
-        val Factory: ViewModelProvider.Factory = object: ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T {
-                val application = checkNotNull(extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY])
-                val shared = application.getSharedPreferences(SD_SHARED_PREF, Context.MODE_PRIVATE)
-                return SDDashboardViewModel(shared) as T
-            }
-        }
-    } // static ViewModelProvider.Factory Factory;
 
-    private val suraApi = SDRetrofitSingle.getInstance().create(SDSuraApi::class.java)
-    private val repository = SDMovementsRepository(suraApi)
+    //private val repository: SDMovementsRepository by inject(SDMovementsRepository::class.java)
 
     val nameUser = MutableLiveData<String>()
     val imageUrl = MutableLiveData<String>()
     val balance = MutableLiveData<String>()
 
     val loading = MutableLiveData<Boolean>()
+    var movSelected: SDMovement? = null
+
+    //Detail Movement
+    val detailInitialsNameMov = MutableLiveData("")
+    val detailAmountMov = MutableLiveData("")
+    val detailUserNameMov = MutableLiveData("")
+    val detailMessageMov = MutableLiveData("")
+    val detailReferenceMov = MutableLiveData("")
 
     private val _action = MutableLiveData<SDDashboardActions>()
     val action: LiveData<SDDashboardActions> = _action
@@ -65,6 +58,19 @@ class SDDashboardViewModel(
 
                 loading.value = false
             }
+        }
+    }
+
+    fun loadDetailInfo() {
+        movSelected?.let {
+            val (_, contact, _, type, amount, message, reference) = it
+            detailInitialsNameMov.value = contact.take(2)
+            detailAmountMov.value = amount.toMovCurrency(
+                if (type == "in") '+' else '-'
+            )
+            detailUserNameMov.value = contact
+            detailMessageMov.value = message
+            detailReferenceMov.value = reference
         }
     }
 }

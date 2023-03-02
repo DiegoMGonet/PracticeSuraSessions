@@ -2,7 +2,6 @@ package com.example.suraapppractice.flows.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.suraapppractice.R
@@ -13,11 +12,12 @@ import com.example.suraapppractice.flows.login.actions.SDLoginActions
 import com.example.suraapppractice.flows.login.viewmodels.SDLoginViewModel
 import com.example.suraapppractice.general.activities.SDBaseActivity
 import com.example.suraapppractice.general.extensions.showMessage
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SDLoginActivity: SDBaseActivity() {
     private lateinit var binding: SdLoginActivityBinding
     private lateinit var errorFormat: String
-    private val viewModel: SDLoginViewModel by viewModels { SDLoginViewModel.Factory }
+    private val viewModel: SDLoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

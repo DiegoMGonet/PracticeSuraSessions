@@ -1,37 +1,20 @@
 package com.example.suraapppractice.flows.login.viewmodels
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.*
-import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.suraapppractice.flows.login.actions.SDFieldType
 import com.example.suraapppractice.flows.login.actions.SDLoginActions
 import com.example.suraapppractice.flows.login.extensions.isValidPassword
 import com.example.suraapppractice.flows.login.extensions.isValidUser
 import com.example.suraapppractice.flows.login.repositories.SDLoginRepository
 import com.example.suraapppractice.general.constants.SD_IS_APP_ACTIVE
-import com.example.suraapppractice.general.constants.SD_SHARED_PREF
 import com.example.suraapppractice.general.constants.SD_USER_INFO
-import com.example.suraapppractice.service.SDRetrofitSingle
-import com.example.suraapppractice.service.SDSuraApi
 import kotlinx.coroutines.launch
 
 class SDLoginViewModel(
-    private val sharedPref: SharedPreferences
+    private val sharedPref: SharedPreferences,
+    private val repository: SDLoginRepository //Se puede inyectar la dependencia por el constructor
 ): ViewModel() {
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = object: ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T {
-                val application = checkNotNull(extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY])
-                val shared = application.getSharedPreferences(SD_SHARED_PREF, Context.MODE_PRIVATE)
-                return SDLoginViewModel(shared) as T
-            }
-        }
-    }
 
     private val _action = MutableLiveData<SDLoginActions>()
     val action: LiveData<SDLoginActions> = _action
@@ -39,8 +22,8 @@ class SDLoginViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val suraApi = SDRetrofitSingle.getInstance().create(SDSuraApi::class.java)
-    private val repository = SDLoginRepository(suraApi)
+    //Se puede inyectar variables
+    //private val repository: SDLoginRepository by inject(SDLoginRepository::class.java)
 
     fun login(user: String, password: String) {
         if(!user.isValidUser()) {

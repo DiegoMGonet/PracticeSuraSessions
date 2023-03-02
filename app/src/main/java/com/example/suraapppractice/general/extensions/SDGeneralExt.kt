@@ -25,6 +25,15 @@ fun AppCompatActivity.replaceFragment(idContainer: Int, fragment: Fragment) {
     transaction.commit()
 }
 
+fun AppCompatActivity.goBackFragment() {
+    supportFragmentManager.popBackStack()
+}
+
+fun AppCompatActivity.isCurrentFrag(fragmentName: String): Boolean {
+    val currentFragment = supportFragmentManager.fragments.firstOrNull()?.javaClass?.simpleName
+    return  currentFragment == fragmentName
+}
+
 val Double?.orZero get() = this ?: 0.0
 
 fun Double.toCurrency(): String {
