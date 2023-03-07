@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class SDMovDetailsFragment: Fragment() {
     private var _binding: SdMovementDetailFragmentBinding? = null
-    private val binding: SdMovementDetailFragmentBinding get() = _binding!!
+    private val binding get() = _binding!!
 
     private val viewModel: SDDashboardViewModel by activityViewModel()
 
@@ -50,5 +50,10 @@ class SDMovDetailsFragment: Fragment() {
                 buttonAcept.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
             }
         }*/
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
